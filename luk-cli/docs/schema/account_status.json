@@ -1,0 +1,144 @@
+{
+  "$defs": {
+    "AccountStatus": {
+      "additionalProperties": false,
+      "description": "MCP `account_status` (§7.2): local files only, never cookie values.",
+      "properties": {
+        "session_present": {
+          "title": "Session Present",
+          "type": "boolean"
+        },
+        "valid": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email"
+        },
+        "logged_in_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Logged In At"
+        },
+        "last_auth_ok_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Auth Ok At"
+        },
+        "private_tools_enabled": {
+          "title": "Private Tools Enabled",
+          "type": "boolean"
+        },
+        "login_instructions": {
+          "title": "Login Instructions",
+          "type": "string"
+        }
+      },
+      "required": [
+        "session_present",
+        "valid",
+        "name",
+        "email",
+        "logged_in_at",
+        "last_auth_ok_at",
+        "private_tools_enabled",
+        "login_instructions"
+      ],
+      "title": "AccountStatus",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 2,
+      "default": 2,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "job_search",
+        "job",
+        "jobs",
+        "suggestion_list",
+        "area_list",
+        "similar_roles",
+        "related_roles",
+        "company_list",
+        "company",
+        "job_list",
+        "application_list",
+        "cv_list",
+        "whoami",
+        "session_status",
+        "account_status"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/$defs/AccountStatus"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "data",
+    "warnings"
+  ],
+  "title": "Envelope[AccountStatus]",
+  "type": "object"
+}

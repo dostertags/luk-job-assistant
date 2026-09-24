@@ -1,0 +1,944 @@
+{
+  "$defs": {
+    "Address": {
+      "additionalProperties": false,
+      "properties": {
+        "locality": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Locality"
+        },
+        "region": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Region"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Country"
+        }
+      },
+      "required": [
+        "locality",
+        "region",
+        "country"
+      ],
+      "title": "Address",
+      "type": "object"
+    },
+    "AreaRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "display_path": {
+          "title": "Display Path",
+          "type": "string"
+        },
+        "area_type_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Area Type Label"
+        }
+      },
+      "required": [
+        "id",
+        "display_path",
+        "area_type_label"
+      ],
+      "title": "AreaRef",
+      "type": "object"
+    },
+    "JobCard": {
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "title": "Slug",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location"
+        },
+        "salary": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Salary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "employment_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "full_time",
+                "part_time",
+                "contractor",
+                "intern",
+                "per_diem",
+                "other"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employment Type"
+        },
+        "modality": {
+          "anyOf": [
+            {
+              "enum": [
+                "on_site",
+                "remote",
+                "hybrid"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modality"
+        },
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Labels",
+          "type": "array"
+        },
+        "posted_ago": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posted Ago"
+        },
+        "posted_at_approx": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posted At Approx"
+        }
+      },
+      "required": [
+        "slug",
+        "url",
+        "title",
+        "company",
+        "location",
+        "salary",
+        "employment_type",
+        "modality",
+        "labels",
+        "posted_ago",
+        "posted_at_approx"
+      ],
+      "title": "JobCard",
+      "type": "object"
+    },
+    "JobPosting": {
+      "additionalProperties": false,
+      "properties": {
+        "slug": {
+          "title": "Slug",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location"
+        },
+        "salary": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Salary"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "employment_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "full_time",
+                "part_time",
+                "contractor",
+                "intern",
+                "per_diem",
+                "other"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Employment Type"
+        },
+        "modality": {
+          "anyOf": [
+            {
+              "enum": [
+                "on_site",
+                "remote",
+                "hybrid"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Modality"
+        },
+        "labels": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Labels",
+          "type": "array"
+        },
+        "posted_ago": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posted Ago"
+        },
+        "posted_at_approx": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posted At Approx"
+        },
+        "offer_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Offer Id"
+        },
+        "canonical_slug": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Canonical Slug"
+        },
+        "company_slug": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company Slug"
+        },
+        "company_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Company Url"
+        },
+        "address": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Address"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "work_hours": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Work Hours"
+        },
+        "vacancies": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vacancies"
+        },
+        "date_posted": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Date Posted"
+        },
+        "valid_through": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid Through"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "expired",
+            "closed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "direct_apply": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Direct Apply"
+        },
+        "description_text": {
+          "title": "Description Text",
+          "type": "string"
+        },
+        "requirements_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Requirements Text"
+        },
+        "text_truncated": {
+          "default": false,
+          "title": "Text Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "slug",
+        "url",
+        "title",
+        "company",
+        "location",
+        "salary",
+        "employment_type",
+        "modality",
+        "labels",
+        "posted_ago",
+        "posted_at_approx",
+        "offer_id",
+        "canonical_slug",
+        "company_slug",
+        "company_url",
+        "address",
+        "work_hours",
+        "vacancies",
+        "date_posted",
+        "valid_through",
+        "status",
+        "direct_apply",
+        "description_text",
+        "requirements_text",
+        "text_truncated"
+      ],
+      "title": "JobPosting",
+      "type": "object"
+    },
+    "JobSearch": {
+      "additionalProperties": false,
+      "properties": {
+        "total": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total"
+        },
+        "page": {
+          "title": "Page",
+          "type": "integer"
+        },
+        "offset": {
+          "default": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "last_fetched_page": {
+          "title": "Last Fetched Page",
+          "type": "integer"
+        },
+        "per_page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Per Page"
+        },
+        "last_page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Page"
+        },
+        "has_more": {
+          "title": "Has More",
+          "type": "boolean"
+        },
+        "next_page": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Page"
+        },
+        "next_offset": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Next Offset"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/JobCard"
+          },
+          "title": "Results",
+          "type": "array"
+        },
+        "details": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/JobPosting"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Details"
+        },
+        "not_found": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Not Found",
+          "type": "array"
+        },
+        "query": {
+          "$ref": "#/$defs/SearchQuery"
+        },
+        "effective_location": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AreaRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "location_alternatives": {
+          "items": {
+            "$ref": "#/$defs/AreaRef"
+          },
+          "title": "Location Alternatives",
+          "type": "array"
+        },
+        "related_roles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Related Roles",
+          "type": "array"
+        }
+      },
+      "required": [
+        "total",
+        "page",
+        "offset",
+        "last_fetched_page",
+        "per_page",
+        "last_page",
+        "has_more",
+        "next_page",
+        "next_offset",
+        "results",
+        "details",
+        "not_found",
+        "query",
+        "effective_location",
+        "location_alternatives",
+        "related_roles"
+      ],
+      "title": "JobSearch",
+      "type": "object"
+    },
+    "Salary": {
+      "additionalProperties": false,
+      "properties": {
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Raw"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max"
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Period"
+        }
+      },
+      "required": [
+        "raw",
+        "currency",
+        "min",
+        "max",
+        "period"
+      ],
+      "title": "Salary",
+      "type": "object"
+    },
+    "SearchFilters": {
+      "additionalProperties": false,
+      "properties": {
+        "job_types": {
+          "items": {
+            "enum": [
+              "full_time",
+              "part_time",
+              "contractor",
+              "intern",
+              "per_diem",
+              "other"
+            ],
+            "type": "string"
+          },
+          "title": "Job Types",
+          "type": "array"
+        },
+        "posted_within": {
+          "anyOf": [
+            {
+              "enum": [
+                "24h",
+                "3d",
+                "1w",
+                "1m",
+                "3m",
+                "6m"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Posted Within"
+        },
+        "min_salary": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min Salary"
+        },
+        "max_salary": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Salary"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "enum": [
+                "CLP",
+                "COP",
+                "PEN",
+                "MXN",
+                "BRL"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        }
+      },
+      "required": [
+        "job_types",
+        "posted_within",
+        "min_salary",
+        "max_salary",
+        "currency"
+      ],
+      "title": "SearchFilters",
+      "type": "object"
+    },
+    "SearchQuery": {
+      "additionalProperties": false,
+      "properties": {
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "location_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Location Ids",
+          "type": "array"
+        },
+        "countries": {
+          "items": {
+            "enum": [
+              "CL",
+              "CO",
+              "MX",
+              "PE",
+              "BR"
+            ],
+            "type": "string"
+          },
+          "title": "Countries",
+          "type": "array"
+        },
+        "worldwide": {
+          "default": false,
+          "title": "Worldwide",
+          "type": "boolean"
+        },
+        "filters": {
+          "$ref": "#/$defs/SearchFilters"
+        }
+      },
+      "required": [
+        "roles",
+        "location_ids",
+        "countries",
+        "worldwide",
+        "filters"
+      ],
+      "title": "SearchQuery",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 2,
+      "default": 2,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "job_search",
+        "job",
+        "jobs",
+        "suggestion_list",
+        "area_list",
+        "similar_roles",
+        "related_roles",
+        "company_list",
+        "company",
+        "job_list",
+        "application_list",
+        "cv_list",
+        "whoami",
+        "session_status",
+        "account_status"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/$defs/JobSearch"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "data",
+    "warnings"
+  ],
+  "title": "Envelope[JobSearch]",
+  "type": "object"
+}

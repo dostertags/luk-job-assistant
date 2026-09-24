@@ -1,0 +1,41 @@
+<!-- SYNTHETIC: /onboarding, where Luk redirects a logged-in user with an incomplete profile (unverified; fake identity "Paz Prueba") -->
+<!DOCTYPE html>
+<html class="h-full bg-primary font-sans" lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <title>Completa tu perfil - Luk</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SCRUBBED" />
+    <meta name="csp-nonce" />
+  </head>
+  <body class="min-h-full bg-surface-alt">
+    <div class="app-layout">
+<header id="main-header" class="site-header">
+    <div class="header-container">
+      <div id="header-user-menu" class="header-user-menu" data-controller="dropdown">
+        <button type="button" class="header-avatar" aria-label="Avatar de Paz Prueba" data-action="click->dropdown#toggle">
+          <span aria-hidden="true">PP</span>
+        </button>
+        <div class="header-dropdown" data-dropdown-target="menu" hidden>
+          <p class="header-dropdown-name">Paz Prueba</p>
+          <p class="header-dropdown-email">paz.prueba@example.com</p>
+        </div>
+      </div>
+    </div>
+</header>
+
+      <main class="app-layout-main">
+        <div class="card stack-md onboarding-card">
+          <h1 class="heading-lg">Completa tu perfil</h1>
+          <p class="text-body text-gray">Sube tu CV y revisa tus datos para empezar a postular.</p>
+          <form action="/onboarding" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="authenticity_token" value="SCRUBBED" autocomplete="off" />
+            <input type="text" name="user[first_name]" value="SCRUBBED" class="input">
+            <input type="file" name="user[cv]" accept=".pdf,.doc,.docx">
+            <button type="submit" class="btn-primary">Continuar</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

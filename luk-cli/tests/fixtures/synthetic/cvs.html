@@ -1,0 +1,65 @@
+<!-- SYNTHETIC: /profile/cvs with 2 CVs, file names already scrubbed to cv-N (unverified layout; fake identity "Paz Prueba") -->
+<!DOCTYPE html>
+<html class="h-full bg-primary font-sans" lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <title>Mis CVs - Luk</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SCRUBBED" />
+    <meta name="csp-nonce" />
+  </head>
+  <body class="min-h-full bg-surface-alt">
+    <div class="app-layout">
+<header id="main-header" class="site-header">
+    <div class="header-container">
+      <div id="header-user-menu" class="header-user-menu" data-controller="dropdown">
+        <button type="button" class="header-avatar" aria-label="Avatar de Paz Prueba" data-action="click->dropdown#toggle">
+          <span aria-hidden="true">PP</span>
+        </button>
+        <div class="header-dropdown" data-dropdown-target="menu" hidden>
+          <p class="header-dropdown-name">Paz Prueba</p>
+          <p class="header-dropdown-email">paz.prueba@example.com</p>
+        </div>
+      </div>
+    </div>
+</header>
+
+      <main class="app-layout-main">
+        <div class="account-content stack-lg">
+          <h1 class="heading-lg">Mis CVs</h1>
+          <p class="text-body text-gray">Sube tu CV en formato .pdf o .docx (máximo 5 MB).</p>
+
+          <div class="stack-md">
+            <div class="card cv-card">
+              <div class="cv-card__info stack-xxs">
+                <p class="cv-card__name block-header">cv-1.pdf</p>
+                <p class="item-subtitle text-gray">Actualizado el 20 de septiembre de 2026</p>
+              </div>
+              <div class="cv-card__actions">
+                <a href="/rails/active_storage/blobs/redirect/SCRUBBED/cv-1.pdf?disposition=attachment" class="btn-default btn-sm">Descargar</a>
+                <form class="button_to" method="post" action="/profile/cvs/12"><input type="hidden" name="_method" value="delete" autocomplete="off" /><button class="btn-icon-basic" aria-label="Eliminar CV" type="submit">x</button><input type="hidden" name="authenticity_token" value="SCRUBBED" autocomplete="off" /></form>
+              </div>
+            </div>
+
+            <div class="card cv-card">
+              <div class="cv-card__info stack-xxs">
+                <p class="cv-card__name block-header">cv-2.docx</p>
+                <p class="item-subtitle text-gray">Subido hace 2 meses</p>
+              </div>
+              <div class="cv-card__actions">
+                <a href="/rails/active_storage/blobs/redirect/SCRUBBED/cv-2.docx?disposition=attachment" class="btn-default btn-sm">Descargar</a>
+              </div>
+            </div>
+          </div>
+
+          <form action="/profile/cvs" method="post" enctype="multipart/form-data" class="card stack-sm">
+            <input type="hidden" name="authenticity_token" value="SCRUBBED" autocomplete="off" />
+            <label for="cv_file" class="block-header">Subir un CV nuevo</label>
+            <input type="file" id="cv_file" name="cv[file]" accept=".pdf,.doc,.docx">
+            <button type="submit" class="btn-primary btn-sm">Subir</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

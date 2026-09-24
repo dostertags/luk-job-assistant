@@ -1,0 +1,256 @@
+{
+  "$defs": {
+    "CookieInfo": {
+      "additionalProperties": false,
+      "description": "A stored cookie without its value; `expires` is 'session' or an ISO-8601 UTC timestamp.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string"
+        },
+        "expires": {
+          "title": "Expires",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "domain",
+        "expires"
+      ],
+      "title": "CookieInfo",
+      "type": "object"
+    },
+    "SessionMeta": {
+      "description": "meta.json (§4.1); tolerates keys written by newer versions.",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Email"
+        },
+        "logged_in_at": {
+          "format": "date-time",
+          "title": "Logged In At",
+          "type": "string"
+        },
+        "last_auth_ok_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Auth Ok At"
+        },
+        "last_validated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Validated At"
+        },
+        "browser": {
+          "title": "Browser",
+          "type": "string"
+        },
+        "luk_cli_version": {
+          "title": "Luk Cli Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "logged_in_at",
+        "last_auth_ok_at",
+        "last_validated_at",
+        "browser",
+        "luk_cli_version"
+      ],
+      "title": "SessionMeta",
+      "type": "object"
+    },
+    "SessionStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "exists": {
+          "title": "Exists",
+          "type": "boolean"
+        },
+        "age_seconds": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age Seconds"
+        },
+        "cookies": {
+          "items": {
+            "$ref": "#/$defs/CookieInfo"
+          },
+          "title": "Cookies",
+          "type": "array"
+        },
+        "meta": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SessionMeta"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "expiry": {
+          "const": "server-side, unknown",
+          "default": "server-side, unknown",
+          "title": "Expiry",
+          "type": "string"
+        },
+        "last_auth_ok_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Auth Ok At"
+        },
+        "last_validated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Last Validated At"
+        },
+        "valid": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Valid"
+        }
+      },
+      "required": [
+        "path",
+        "exists",
+        "age_seconds",
+        "cookies",
+        "meta",
+        "expiry",
+        "last_auth_ok_at",
+        "last_validated_at",
+        "valid"
+      ],
+      "title": "SessionStatus",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 2,
+      "default": 2,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "job_search",
+        "job",
+        "jobs",
+        "suggestion_list",
+        "area_list",
+        "similar_roles",
+        "related_roles",
+        "company_list",
+        "company",
+        "job_list",
+        "application_list",
+        "cv_list",
+        "whoami",
+        "session_status",
+        "account_status"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/$defs/SessionStatus"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "data",
+    "warnings"
+  ],
+  "title": "Envelope[SessionStatus]",
+  "type": "object"
+}

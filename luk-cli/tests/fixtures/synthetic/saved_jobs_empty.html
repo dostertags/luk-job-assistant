@@ -1,0 +1,46 @@
+<!-- SYNTHETIC: /saved_jobs with no saved offers (unverified layout and empty-state text; fake identity "Paz Prueba") -->
+<!DOCTYPE html>
+<html class="h-full bg-primary font-sans" lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <title>Ofertas guardadas - Luk</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SCRUBBED" />
+    <meta name="csp-nonce" />
+  </head>
+  <body class="min-h-full bg-surface-alt">
+    <div class="app-layout">
+<header id="main-header" class="site-header">
+    <div class="header-container">
+      <nav class="header-nav" aria-label="Navegación">
+          <a href="/job_offers" class="header-nav-link">Buscar trabajo</a>
+      </nav>
+      <div id="header-user-menu" class="header-user-menu" data-controller="dropdown">
+        <button type="button" class="header-avatar" aria-label="Avatar de Paz Prueba" data-action="click->dropdown#toggle">
+          <span aria-hidden="true">PP</span>
+        </button>
+        <div class="header-dropdown" data-dropdown-target="menu" hidden>
+          <p class="header-dropdown-name">Paz Prueba</p>
+          <p class="header-dropdown-email">paz.prueba@example.com</p>
+        </div>
+      </div>
+    </div>
+</header>
+
+      <main class="app-layout-main">
+        <div class="account-content stack-lg">
+          <h1 class="heading-lg">Ofertas guardadas</h1>
+          <div class="card card-state">
+            <p class="heading-md text-gray-dark">Aún no has guardado ofertas</p>
+            <p class="text-body text-gray">Guarda las ofertas que te interesen para revisarlas después.</p>
+            <a href="/job_offers" class="btn-primary btn-sm">Buscar ofertas</a>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <a href="/companies/home">Acceso Empresas</a>
+      </footer>
+    </div>
+  </body>
+</html>

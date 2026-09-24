@@ -1,0 +1,22 @@
+{
+  "name": "luk-local",
+  "owner": {
+    "name": "Diego Ostertag"
+  },
+  "metadata": {
+    "description": "Local marketplace for the luk-cli Claude Code plugin."
+  },
+  "plugins": [
+    {
+      "name": "luk",
+      "source": "./claude-plugin",
+      "description": "Read-only Luk (takealuk.com) job search: MCP tools, a skill and /luk:buscar, /luk:revisar, /luk:login.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Diego Ostertag"
+      },
+      "license": "MIT",
+      "category": "productivity"
+    }
+  ]
+}

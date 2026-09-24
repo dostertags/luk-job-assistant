@@ -1,0 +1,68 @@
+<!-- SYNTHETIC: worst-case /profile/* capture for the scrubber: a sentinel or the fake identity "Paz Íñiguez Sentinela" in every location spec §8.1 scrubs -->
+<!DOCTYPE html>
+<html class="h-full bg-primary font-sans" lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <title>Perfil de Paz Íñiguez Sentinela - Luk</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SENTINEL-CSRF-META" />
+    <meta name="csp-nonce" content="SENTINEL-CSP-NONCE" />
+    <script nonce="SENTINEL-CSP-NONCE">window.currentUser = {"email": "paz.iniguez@sentinela.example", "token": "SENTINEL-SCRIPT-BODY"};</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"Analista de Datos","description":"<p>Contacto: Paz Íñiguez, reclutamiento.sentinel@empresa.example</p>","hiringOrganization":{"@type":"Organization","name":"Empresa Ficticia S.A.","identifier":{"@type":"PropertyValue","name":"RUT","value":"76.543.210-K"}}}</script>
+  </head>
+  <body class="min-h-full bg-surface-alt">
+    <!-- SENTINEL-COMMENT paz.iniguez@sentinela.example -->
+    <div class="app-layout">
+<header id="main-header" class="site-header">
+    <div class="header-container">
+      <div id="header-user-menu" class="header-user-menu" data-controller="dropdown">
+        <button type="button" class="header-avatar" aria-label="Avatar de Paz Íñiguez Sentinela" data-action="click->dropdown#toggle">
+          <img class="header-avatar-img" alt="" src="https://lh3.googleusercontent.com/a/SENTINEL-GOOGLE-AVATAR=s96-c" srcset="https://lh3.googleusercontent.com/a/SENTINEL-GOOGLE-AVATAR=s192-c 2x">
+        </button>
+        <div class="header-dropdown" data-dropdown-target="menu" hidden>
+          <p class="header-dropdown-name">Paz Íñiguez Sentinela</p>
+          <p class="header-dropdown-email">paz.iniguez@sentinela.example</p>
+        </div>
+      </div>
+      <div id="g_id_onload" data-controller="google-one-tap" data-google-one-tap-csrf-token-value="SENTINEL-ONE-TAP"></div>
+      <div data-controller="amplitude" data-amplitude-user-id-value="SENTINEL-AMP-USER" data-amplitude-device-id-value="SENTINEL-AMP-DEVICE" data-amplitude-api-key-value="public-amplitude-key"></div>
+      <turbo-cable-stream-source channel="Turbo::StreamsChannel" signed-stream-name="SENTINEL-STREAM"></turbo-cable-stream-source>
+    </div>
+</header>
+
+      <main class="app-layout-main">
+        <turbo-frame id="profile_frame" class="account-content stack-lg">
+          <h1 class="heading-lg">Hola, Sentinela</h1>
+          <p class="text-body">PAZ IÑIGUEZ SENTINELA · paz iniguez · usuario paz.iniguez · paziniguezsentinela</p>
+          <p class="text-body">RUT 12.345.678-0 y 9876543-K · Teléfono +56 9 0000 0001 o 900000002 · contacto.sentinel@empresa.example</p>
+          <p class="text-body">Mi perfil: https://www.linkedin.com/in/sentinel-linkedin-handle/ · referencia SENTINELSIGNEDBLOB0001--SENTINELDIGEST0000000001</p>
+
+          <div class="card profile-card" data-user-id="SENTINEL-USER-ATTR" data-email="SENTINEL-EMAIL-ATTR" data-phone="SENTINEL-PHONE-ATTR" data-rut="SENTINEL-RUT-ATTR" data-avatar-url="SENTINEL-AVATAR-ATTR" data-share-title-value="Compartido por Paz Íñiguez">
+            <img class="profile-photo" alt="Foto" src="/rails/active_storage/representations/redirect/SENTINELBLOBKEY/foto.png">
+            <img class="profile-linkedin-photo" alt="Foto LinkedIn" src="https://media.licdn.com/dms/image/SENTINEL-LICDN/profile-displayphoto.jpg">
+            <a href="/u/paz-iniguez-sentinela" title="Íñiguez">Perfil público</a>
+            <a href="/profile?name=Paz%20%C3%8D%C3%B1iguez">Editar</a>
+            <a href="https://storage.example.com/uploads/cv.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=SENTINELAMZCRED&amp;X-Amz-Signature=SENTINELAMZSIG">Ver CV</a>
+            <a href="https://cdn.example.net/avatar.png?sig=SENTINELSIG1&amp;w=96">Avatar</a>
+            <a href="/descargar?token=SENTINELTOKEN&amp;signature=SENTINELSIGNATURE">Descargar</a>
+          </div>
+
+          <form action="/profile" method="post" class="card stack-sm">
+            <input type="hidden" name="authenticity_token" value="SENTINEL-AUTH-TOKEN" autocomplete="off" />
+            <input type="text" name="user[phone]" value="SENTINEL-INPUT-VALUE" class="input">
+            <input type="text" name="user[city]" value="Ñuñoa" class="input">
+            <textarea name="user[summary]" class="input">SENTINEL-TEXTAREA Soy Paz, analista.</textarea>
+          </form>
+
+          <div class="stack-md">
+            <div class="card cv-card">
+              <p class="cv-card__name block-header">SENTINEL CV Final.pdf</p>
+              <p class="item-subtitle text-gray">Actualizado hace 3 días</p>
+              <a href="/rails/active_storage/blobs/redirect/SENTINELBLOBKEY/cv.pdf" download="SENTINEL_CV_2026.docx" class="btn-default btn-sm">Descargar</a>
+            </div>
+          </div>
+        </turbo-frame>
+      </main>
+    </div>
+  </body>
+</html>

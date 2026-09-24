@@ -1,0 +1,21 @@
+{
+  "_help": "luk-assist answers. Fill in only what is true for you. Empty values and <placeholders> are never typed into a form. per_question keys match (ignoring case and accents) any question label that contains them. Keep this file out of any repository.",
+  "profile": {
+    "titulo": "<your degree or profession, e.g. Ingeniería Comercial>",
+    "experiencia": "<two to four sentences about your relevant experience>",
+    "comuna": "<where you live: street (optional), comuna, city>",
+    "idioma": "<languages and level, e.g. Español nativo; inglés intermedio>",
+    "edad": "<your age, only if you want to share it>",
+    "licencia": "<driving licence, e.g. Sí, clase B>",
+    "movilizacion": "<own transport, e.g. Sí, movilización propia>"
+  },
+  "fixed": {
+    "salary": "<expected monthly net salary in CLP, digits only>",
+    "availability": "<e.g. Inmediata, or 30 días>",
+    "cover_letter": "<a short cover letter>",
+    "generic": "<optional neutral sentence, used only with --fill-generic>"
+  },
+  "per_question": {
+    "<part of a question you see often>": "<your exact answer>"
+  }
+}

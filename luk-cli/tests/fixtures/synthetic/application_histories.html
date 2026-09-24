@@ -1,0 +1,84 @@
+<!-- SYNTHETIC: /profile/application_histories with 3 applications in 3 statuses (unverified layout; fake identity "Paz Prueba") -->
+<!DOCTYPE html>
+<html class="h-full bg-primary font-sans" lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <title>Mis postulaciones - Luk</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SCRUBBED" />
+    <meta name="csp-nonce" />
+  </head>
+  <body class="min-h-full bg-surface-alt">
+    <div class="app-layout">
+<header id="main-header" class="site-header">
+    <div class="header-container">
+      <nav class="header-nav" aria-label="Navegación">
+          <a href="/job_offers" class="header-nav-link">Buscar trabajo</a>
+      </nav>
+      <div id="header-user-menu" class="header-user-menu" data-controller="dropdown">
+        <button type="button" class="header-avatar" aria-label="Avatar de Paz Prueba" data-action="click->dropdown#toggle">
+          <span aria-hidden="true">PP</span>
+        </button>
+        <div class="header-dropdown" data-dropdown-target="menu" hidden>
+          <p class="header-dropdown-name">Paz Prueba</p>
+          <p class="header-dropdown-email">paz.prueba@example.com</p>
+        </div>
+      </div>
+    </div>
+</header>
+
+      <main class="app-layout-main">
+        <div class="account-shell">
+          <nav class="account-sidebar" aria-label="Mi cuenta">
+            <a href="/profile" class="menu-item">Mi perfil</a>
+            <a href="/profile/application_histories" class="menu-item menu-item--active">Mis postulaciones</a>
+            <a href="/profile/cvs" class="menu-item">Mis CVs</a>
+          </nav>
+          <div class="account-content stack-lg">
+            <h1 class="heading-lg">Mis postulaciones</h1>
+
+            <div class="stack-md">
+              <div class="card application-card" data-application-id="101">
+                <a href="/job_offers/analista-de-datos-empresa-ficticia" data-turbo-frame="_top">
+                  <h2 class="card-title">Analista de Datos</h2>
+                </a>
+                <p class="item-title text-secondary-dark">Empresa Ficticia S.A.</p>
+                <div class="flex items-center inline-gap-xs">
+                  <span class="tag-warning application-status">En revisión</span>
+                  <span class="item-subtitle text-gray">Postulaste el 12 de septiembre de 2026</span>
+                </div>
+              </div>
+
+              <div class="card application-card" data-application-id="102">
+                <a href="/job_offers/ejecutivo-comercial-part-time" data-turbo-frame="_top">
+                  <h2 class="card-title">Ejecutivo Comercial</h2>
+                </a>
+                <p class="item-title text-secondary-dark">Comercial Ejemplo Ltda.</p>
+                <div class="flex items-center inline-gap-xs">
+                  <span class="tag-success application-status">Enviada</span>
+                  <span class="item-subtitle text-gray">Postulaste hace 3 días</span>
+                </div>
+              </div>
+
+              <div class="card application-card" data-application-id="103">
+                <a href="/job_offers/practica-contabilidad-otra-empresa" data-turbo-frame="_top">
+                  <h2 class="card-title">Práctica Contabilidad</h2>
+                </a>
+                <p class="item-title text-secondary-dark">Otra Empresa SpA</p>
+                <div class="flex items-center inline-gap-xs">
+                  <span class="tag-gray application-status">Proceso finalizado</span>
+                  <span class="item-subtitle text-gray">Postulaste el 2 de julio de 2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <a href="/job_offers/oferta-del-footer">Oferta del footer</a>
+        <a href="/companies/home">Acceso Empresas</a>
+      </footer>
+    </div>
+  </body>
+</html>

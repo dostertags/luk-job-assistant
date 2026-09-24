@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "luk-assist"
+dynamic = ["version"]
+description = "Pre-fills Luk (takealuk.com) application forms in a visible browser and stops: you review and submit yourself"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Diego Ostertag" }]
+requires-python = ">=3.10"
+dependencies = [
+    "platformdirs>=4",
+]
+
+[project.optional-dependencies]
+browser = ["playwright>=1.44"]
+pdf = ["pypdf>=4"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+luk-assist = "luk_assist.cli:main"
+
+[tool.hatch.version]
+path = "src/luk_assist/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/luk_assist"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]  # `python -m pytest -q` works from this folder in any shell, installed or not

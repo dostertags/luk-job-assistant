@@ -1,0 +1,16 @@
+# Personal files luk-assist reads or writes. They live in your user dirs; never commit copies.
+answers.json
+review_queue.json
+session.json
+storage_state*.json
+browser-profile/
+*.pdf
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/

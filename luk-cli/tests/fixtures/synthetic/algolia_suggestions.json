@@ -1,0 +1,12 @@
+{"_synthetic": "SYNTHETIC: Algolia POST /1/indexes/*/queries response for JobOffer_query_suggestions, query 'analista fin' (JSON has no comments, so the marker is this key)",
+ "results": [
+  {"hits": [
+    {"query": "analista financiero", "popularity": 412, "objectID": "analista financiero", "_highlightResult": {"query": {"value": "<em>analista</em> <em>fin</em>anciero", "matchLevel": "full"}}},
+    {"query": "analista de finanzas", "popularity": 97, "objectID": "analista de finanzas"},
+    {"query": "analista financiero senior", "objectID": "analista financiero senior"},
+    {"objectID": "hit-without-query", "popularity": 3}
+   ],
+   "nbHits": 4, "page": 0, "nbPages": 1, "hitsPerPage": 5, "processingTimeMS": 1,
+   "query": "analista fin", "params": "query=analista%20fin&hitsPerPage=5", "index": "JobOffer_query_suggestions"}
+ ]
+}

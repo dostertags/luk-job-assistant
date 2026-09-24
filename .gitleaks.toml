@@ -1,0 +1,6 @@
+title = "luk-job-assistant"
+
+# Start from gitleaks' default rule set. Allowlist entries are added only for values that are
+# fake by design (test sentinels), never for whole files or directories.
+[extend]
+useDefault = true

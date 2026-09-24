@@ -1,0 +1,172 @@
+{
+  "$defs": {
+    "Area": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "display_path": {
+          "title": "Display Path",
+          "type": "string"
+        },
+        "area_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Area Type"
+        },
+        "area_type_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Area Type Label"
+        },
+        "offer_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Offer Count"
+        },
+        "depth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Depth"
+        },
+        "visitor_country_match": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visitor Country Match"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "display_path",
+        "area_type",
+        "area_type_label",
+        "offer_count",
+        "depth",
+        "visitor_country_match"
+      ],
+      "title": "Area",
+      "type": "object"
+    },
+    "AreaList": {
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "context": {
+          "enum": [
+            "jobs",
+            "companies"
+          ],
+          "title": "Context",
+          "type": "string"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/Area"
+          },
+          "title": "Results",
+          "type": "array"
+        }
+      },
+      "required": [
+        "query",
+        "context",
+        "results"
+      ],
+      "title": "AreaList",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 2,
+      "default": 2,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "job_search",
+        "job",
+        "jobs",
+        "suggestion_list",
+        "area_list",
+        "similar_roles",
+        "related_roles",
+        "company_list",
+        "company",
+        "job_list",
+        "application_list",
+        "cv_list",
+        "whoami",
+        "session_status",
+        "account_status"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/$defs/AreaList"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "data",
+    "warnings"
+  ],
+  "title": "Envelope[AreaList]",
+  "type": "object"
+}

@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "ErrorInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "enum": [
+            "INVALID_ARGUMENT",
+            "AUTH_REQUIRED",
+            "NOT_FOUND",
+            "NETWORK",
+            "RATE_LIMITED",
+            "BLOCKED",
+            "BUDGET_EXCEEDED",
+            "SITE_CHANGED",
+            "INTERRUPTED",
+            "INTERNAL"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "exit_code": {
+          "title": "Exit Code",
+          "type": "integer"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "hint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Hint"
+        }
+      },
+      "required": [
+        "code",
+        "exit_code",
+        "message",
+        "hint"
+      ],
+      "title": "ErrorInfo",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "`{\"schema_version\": 2, \"kind\": \"error\", \"error\": {code, exit_code, message, hint}}`.",
+  "properties": {
+    "schema_version": {
+      "const": 2,
+      "default": 2,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "kind": {
+      "const": "error",
+      "default": "error",
+      "title": "Kind",
+      "type": "string"
+    },
+    "error": {
+      "$ref": "#/$defs/ErrorInfo"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "error"
+  ],
+  "title": "ErrorEnvelope",
+  "type": "object"
+}

@@ -1,0 +1,12 @@
+# Real (scrubbed) private captures stay local — never commit them (ADR-0001, spec §8.1).
+tests/fixtures/private_real/
+captures/
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/

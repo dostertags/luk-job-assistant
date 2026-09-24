@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# Personal data — NEVER commit (sessions, answers, CVs, captures, profiles)
+# ---------------------------------------------------------------------------
+# luk-cli session / login metadata (normally in your user config dir, but just in case)
+session.json
+meta.json
+*.session.json
+storage_state*.json
+# luk-assist answers (only the neutral example is tracked)
+answers.json
+!luk-assist/answers.example.json
+# CVs and other personal documents
+*.pdf
+*.docx
+# Browser profiles
+browser-profile/
+.perfil_navegador/
+# Real page captures (luk debug capture) and scrubbed private fixtures
+captures/
+**/tests/fixtures/private_real/
+# Secrets
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------------------
+# Generated output
+# ---------------------------------------------------------------------------
+out/
+offers*.jsonl
+offers*.csv
+review_queue*.json
+*.sqlite
+*.db
+
+# ---------------------------------------------------------------------------
+# Python / tooling
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+~$*
+.idea/
+.vscode/

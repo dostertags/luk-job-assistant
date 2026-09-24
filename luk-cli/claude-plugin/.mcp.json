@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "luk": {
+      "type": "stdio",
+      "command": "luk",
+      "args": ["mcp"]
+    }
+  }
+}
