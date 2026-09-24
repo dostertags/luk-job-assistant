@@ -39,14 +39,21 @@ def test_contact_env_rejects_emails_and_junk(monkeypatch, value):
 
 
 @pytest.mark.parametrize("value", [
-    "https://example.com/\x00",                # control characters would reach the header
-    "https://example.com/\x7f",
+    "https://example.com/\x7f",                # control characters would reach the header
     "https://example.com/\tx",
     "https://example.com/año",                 # non-ASCII: percent-encode it instead
 ])
 def test_contact_env_must_be_printable_ascii(monkeypatch, value):
     monkeypatch.setenv(config.CONTACT_ENV, value)
     assert config.user_agent().endswith(f"(+{config.DEFAULT_CONTACT})")
+
+
+def test_a_nul_in_the_contact_never_reaches_the_header(monkeypatch):
+    # Most platforms refuse a NUL inside an environment variable ("embedded null byte"), so the
+    # same validator is exercised through the explicit contact argument and the honest-UA check.
+    monkeypatch.delenv(config.CONTACT_ENV, raising=False)
+    assert config.user_agent("https://example.com/\x00").endswith(f"(+{config.DEFAULT_CONTACT})")
+    assert not config.is_honest_user_agent("luk-scraper/0.1.0 (+https://example.com/\x00)")
 
 
 def test_default_user_agent_passes_the_honest_check(monkeypatch):
