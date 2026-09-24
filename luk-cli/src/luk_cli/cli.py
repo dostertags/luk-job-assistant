@@ -44,6 +44,14 @@ from luk_cli.redact import redact
 
 F = TypeVar("F", bound=Callable[..., Any])
 
+# typer <= 0.26 raises click's own exception classes; typer >= 0.27 vendors click (`typer._click`) and
+# raises its own `Exit`/`Abort` and vendored `ClickException`s, which are NOT click's. Both families are
+# caught, found through typer's public classes only (the vendored ClickException sits in BadParameter's MRO).
+CLICK_ERRORS: tuple[type[BaseException], ...] = tuple(dict.fromkeys(
+    [click.ClickException, *(c for c in typer.BadParameter.__mro__ if c.__name__ == "ClickException")]))
+EXIT_ERRORS: tuple[type[BaseException], ...] = tuple(dict.fromkeys([click.exceptions.Exit, typer.Exit]))
+ABORT_ERRORS: tuple[type[BaseException], ...] = tuple(dict.fromkeys([click.exceptions.Abort, typer.Abort]))
+
 
 def _typer(**options: Any) -> typer.Typer:
     return typer.Typer(pretty_exceptions_show_locals=False, no_args_is_help=True, add_completion=False, **options)
@@ -124,7 +132,7 @@ def _report(err: BaseException, *, as_json: bool, verbose: bool) -> int:
     """Print `err` per §5.3/§5.4 and return its exit code."""
     if isinstance(err, LukError):
         error = err
-    elif isinstance(err, (KeyboardInterrupt, click.exceptions.Abort)):
+    elif isinstance(err, (KeyboardInterrupt, *ABORT_ERRORS)):
         error = Interrupted()
     else:
         error = InternalError(f"unexpected error: {type(err).__name__}: {' '.join(str(err).split())}")
@@ -133,7 +141,7 @@ def _report(err: BaseException, *, as_json: bool, verbose: bool) -> int:
     _say(redact(f"luk: {error.message}"))
     if error.hint and not as_json:
         _say(redact(f"hint: {error.hint}"))
-    if verbose and not isinstance(err, (LukError, KeyboardInterrupt, click.exceptions.Abort)):
+    if verbose and not isinstance(err, (LukError, KeyboardInterrupt, *ABORT_ERRORS)):
         _say(redact("".join(traceback.format_exception(type(err), err, err.__traceback__))).rstrip())
     return error.exit_code
 
@@ -142,7 +150,7 @@ def _report(err: BaseException, *, as_json: bool, verbose: bool) -> int:
 def _reporting(ctx: typer.Context, *, as_json: bool = False) -> Iterator[None]:
     try:
         yield
-    except (click.exceptions.Exit, click.ClickException):
+    except (*EXIT_ERRORS, *CLICK_ERRORS):
         raise
     except (Exception, KeyboardInterrupt) as err:
         raise typer.Exit(_report(err, as_json=as_json, verbose=_verbose(ctx))) from None
@@ -461,7 +469,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     as_json = "--json" in args
     try:
         result = app(args=args, prog_name="luk", standalone_mode=False)
-    except click.ClickException as err:
+    except CLICK_ERRORS as err:
         if as_json:  # §5.4: under --json even a usage error is the error document plus one stderr line
             return _report(InvalidArgument(err.format_message()), as_json=True, verbose=False)
         shown = io.StringIO()  # click's usage text, then the §4.6 final redaction pass (it echoes argv)

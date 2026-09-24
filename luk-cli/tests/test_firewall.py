@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import ast
 import os
+import re
 import sys
 from collections.abc import Iterator
 from pathlib import Path
@@ -24,12 +25,15 @@ import pytest
 LUK_CLI = Path(__file__).resolve().parents[1]
 SOURCE = LUK_CLI / "src" / "luk_cli"
 REPO = LUK_CLI.parent
-# The declared dependencies (pyproject §3) plus the two it imports transitively: click (typer) and
-# anyio (httpx, mcp). `luk_fake_api` is the test-only LUK_TEST_FAKE_API module (spec §8.2).
+# The declared dependencies (pyproject §3) plus anyio, which httpx itself depends on. `luk_fake_api` is
+# the test-only LUK_TEST_FAKE_API module (spec §8.2).
 ALLOWED = frozenset({
     "luk_cli", "typer", "click", "rich", "httpx", "pydantic", "selectolax", "platformdirs", "filelock",
     "playwright", "mcp", "anyio", "luk_fake_api",
 })
+# Imported but guaranteed by another declared dependency (httpx requires anyio).
+TRANSITIVE_OK = frozenset({"anyio"})
+PYPROJECT = LUK_CLI / "pyproject.toml"
 # Sibling package directory -> the import name of its package.
 SIBLINGS = {"luk-scraper": "luk_scraper", "luk-assist": "luk_assist"}
 SKIPPED_DIRS = frozenset({".git", "node_modules", "__pycache__", ".venv", "venv", "luk-cli"})
@@ -91,6 +95,32 @@ def test_luk_cli_imports_only_stdlib_and_its_dependencies():
         if name not in ALLOWED and name not in sys.stdlib_module_names
     }
     assert luk_cli_sources() and not foreign
+
+
+def declared_distributions() -> set[str]:
+    """Distribution names in pyproject's dependencies and optional-dependencies (no tomllib on 3.10)."""
+    text = PYPROJECT.read_text("utf-8")
+    names: set[str] = set()
+    for block in re.findall(r"(?ms)^(?:dependencies|[A-Za-z0-9_-]+)\s*=\s*\[(.*?)\]", text):
+        for spec in re.findall(r"\"([^\"]+)\"", block):
+            name = re.match(r"[A-Za-z0-9_.-]+", spec)
+            if name:
+                names.add(name.group(0).lower().replace("-", "_"))
+    return names
+
+
+def test_every_third_party_import_is_a_declared_dependency():
+    """A dependency that merely arrives transitively can vanish: typer >= 0.27 stopped installing click,
+    which luk_cli imports directly. Every third-party import must be declared in pyproject.toml."""
+    declared = declared_distributions()
+    undeclared = {
+        f"{path.name}: {name}"
+        for path in luk_cli_sources()
+        for name in imported_modules(path)
+        if name not in sys.stdlib_module_names and name not in {"luk_cli", "luk_fake_api"}
+        and name not in declared and name not in TRANSITIVE_OK
+    }
+    assert "click" in declared and not undeclared
 
 
 def test_luk_cli_never_imports_a_sibling_package():

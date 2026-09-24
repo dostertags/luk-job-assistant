@@ -26,13 +26,16 @@ jobs:
           python -m pip install -U pip
           python -m pip install -e "./luk-cli[mcp,dev]" -e "./luk-scraper[dev]" -e "./luk-assist[dev]"
       # Tests are offline: fixtures and fakes only, no network, no browser.
+      # Each package runs even if an earlier one failed, so one run shows every failure.
       - name: luk-cli
         working-directory: luk-cli
         run: python -m pytest -q
       - name: luk-scraper
+        if: ${{ !cancelled() }}
         working-directory: luk-scraper
         run: python -m pytest -q
       - name: luk-assist
+        if: ${{ !cancelled() }}
         working-directory: luk-assist
         run: python -m pytest -q
 

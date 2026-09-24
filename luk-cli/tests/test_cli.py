@@ -8,6 +8,7 @@ import io
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 import textwrap
@@ -325,7 +326,9 @@ def test_usage_errors_are_redacted_with_their_usage_line(capsys, args):
     assert cli.main(args) == 1
     out = capsys.readouterr()
     assert "SENTINELCOOKIEVALUE" not in out.out + out.err
-    assert out.err.startswith(f"Usage: luk {args[0]} ") and "Got unexpected extra argument (" in out.err
+    # click < 8.2 says "argument (", newer click (and typer's vendored copy) says "argument(s) (".
+    assert out.err.startswith(f"Usage: luk {args[0]} ")
+    assert re.search(r"Got unexpected extra argument(?:\(s\))? \(", out.err)
     assert "=***" in out.err and out.out == ""
 
 
@@ -522,6 +525,8 @@ def test_unverified_options_are_not_registered(monkeypatch):
 
 def test_every_phase0_filter_is_registered_today():
     help_text = runner.invoke(cli.app, ["search", "--help"], env={"COLUMNS": "200"}).stdout
+    # typer forces rich colour when GITHUB_ACTIONS / FORCE_COLOR is set: compare the plain text.
+    help_text = re.sub(r"\x1b\[[0-9;?]*[A-Za-z]", "", help_text)
     for option in ("--country", "--worldwide", "--posted-within", "--type", "--min-salary", "--max-salary",
                    "--currency", "--location", "--location-id", "--page", "--limit", "--json", "--csv"):
         assert option in help_text
